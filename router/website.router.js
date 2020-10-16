@@ -6,5 +6,6 @@ import WebsiteController from "../controller/website.controller";
 const router = Router();
 
 router.get('/', isDev, WebsiteController.index)
+router.get('/:id', isDev, WebsiteController.one)
 router.post('/', isDev, WebsiteController.create)
 module.exports = router;
