@@ -13,8 +13,9 @@ export default class WebsiteController {
 
     static async one(req, res){
         try {
-            let website = await Website.find(req.params.id).populate('author').populate('pages')
+            let website = await Website.findById(req.params.id)
             if (website === null) return res.status(404)
+            else return res.status(200).json(website)
         }catch (e) {return res.status(500).json(e.message)}
     }
 
