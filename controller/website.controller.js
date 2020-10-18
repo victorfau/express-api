@@ -13,7 +13,12 @@ export default class WebsiteController {
 
     static async one(req, res){
         try {
-            let website = await Website.findById(req.params.id)
+            let website = await Website.findById(req.params.id).populate({
+                path: 'pages',
+                populate: {
+                    path: 'blocs'
+                }
+            })
             if (website === null) return res.status(404)
             else return res.status(200).json(website)
         }catch (e) {return res.status(500).json(e.message)}
